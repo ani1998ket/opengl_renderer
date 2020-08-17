@@ -4,6 +4,7 @@
 #include "Window.hpp"
 #include "ShaderProgram.hpp"
 #include "Shapes.hpp"
+#include "WorldObject.h"
 #include "Camera.hpp"
 #include "utils.hpp"
 
@@ -11,8 +12,9 @@ class Game{
 
 private:
     Window window;
-    Cube shape;
-    Cube light;
+    Cube cube;
+    WorldObject shape;
+    WorldObject light;
     Camera camera;
     void gameLoop();
 

@@ -20,15 +20,7 @@ public:
     std::vector<float> normals;
 
     void init();
-
-    glm::vec3 position, rotation, scale_vector;
-    
-    void translate( glm::vec3 v );
-    void rotate( glm::vec3 v );
-    void scale( glm::vec3 v);
-
-    glm::mat4 world_matrix();
-
     void bind();
+    void unbind();
 };
 #endif

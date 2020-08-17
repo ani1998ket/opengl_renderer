@@ -5,7 +5,8 @@ Game::Game()
     : window( 1280, 720, "Snake"), 
     program( vertex, fragment ),
     lightProgram( shaderpath + "basic.vs", shaderpath + "basic.fs" ),
-    camera( 45.0f, 1280.0f/720, 0.1, 100)
+    camera( 45.0f, 1280.0f/720, 0.1, 100),
+    light( cube ), shape( cube )
 {
     program.use();
     camera.eye.z = -3.0f;
@@ -39,36 +40,30 @@ void Game::gameLoop(){
     }
 }
 void Game::update( double delta_time ){
-    program.use();
 
+    // print_FPS( delta_time );
+    
     // camera.eye.x = 3 * glm::cos( time_elapsed );
     // camera.eye.y = 3 * glm::cos( time_elapsed );
     // camera.eye.z = 3 * glm::sin( time_elapsed );
-
-    
     light.position = glm::vec3(  0, glm::sin( time_elapsed / 2),  glm::cos( time_elapsed / 2));
-    program.set("lightPos", light.position);
     shape.rotation.y = 0.5 * time_elapsed;
-    // shape.scale_vector.y = 0.2 * time_elapsed;
-    // shape.position.z = 2 * glm::sin(time_elapsed);
-    
+}
+void Game::render(){
+
+    program.use();
+    program.set("lightPos", light.position);
     program.set( "model", shape.world_matrix());
     program.set( "view", camera.view_matrix() );
     program.set( "projection", camera.projection_matrix() );
     program.set( "cameraPos", camera.eye );
-
-    shape.bind();
-    glDrawArrays(GL_TRIANGLES, 0, 300);
+    shape.draw();
 
     lightProgram.use();
     lightProgram.set( "model", light.world_matrix());
     lightProgram.set( "view", camera.view_matrix() );
     lightProgram.set( "projection", camera.projection_matrix() );
     lightProgram.set( "u_color", glm::vec4(1.0) );
-    light.bind();
-    glDrawArrays(GL_TRIANGLES, 0, 300);
-    // print_FPS( delta_time );
-}
-void Game::render(){
+    light.draw();
 
 }
