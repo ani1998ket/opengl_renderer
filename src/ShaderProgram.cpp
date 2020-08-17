@@ -6,7 +6,6 @@ ShaderProgram::ShaderProgram()
 {  
     id = glCreateProgram();
     use();
-    std::cout << "Program created with id : " << id << std::endl;
 }
 
 ShaderProgram::~ShaderProgram()
@@ -25,7 +24,6 @@ ShaderProgram::ShaderProgram( std::string vertex_shader_path, std::string fragme
 void ShaderProgram::use()
 {
     glUseProgram( id );
-    // std::cout << "Using Program with id : " << id << std::endl;
 }
 
 void ShaderProgram::attach(GLenum type, std::string path)
