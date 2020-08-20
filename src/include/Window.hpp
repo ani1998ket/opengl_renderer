@@ -6,14 +6,15 @@
 #include <string>
 
 class Window{
-    private:
+
+private:
     unsigned width, height;
     GLFWwindow* window;
     std::string title;
-
+    
     void init();
 
-    public:
+public:
     Window( unsigned width = 640, unsigned height = 480, std::string title = "MyGame");
     ~Window();
     inline bool running() { return !glfwWindowShouldClose(window); }

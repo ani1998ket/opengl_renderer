@@ -8,17 +8,17 @@ ShaderProgram::ShaderProgram()
     use();
 }
 
-ShaderProgram::~ShaderProgram()
-{
-    glDeleteProgram( id );
-}
-
 ShaderProgram::ShaderProgram( std::string vertex_shader_path, std::string fragment_shader_path )
     : ShaderProgram()
 {
     attach( GL_VERTEX_SHADER, vertex_shader_path);
     attach( GL_FRAGMENT_SHADER, fragment_shader_path);
     link();
+}
+
+ShaderProgram::~ShaderProgram()
+{
+    glDeleteProgram( id );
 }
 
 void ShaderProgram::use()
@@ -87,9 +87,11 @@ void ShaderProgram::link()
 void ShaderProgram::set( std::string name, glm::mat4 matrix ){
     glUniformMatrix4fv( glGetUniformLocation(id, name.c_str()), 1, GL_FALSE, &matrix[0][0] );
 }
+
 void ShaderProgram::set( std::string name, glm::vec3 vec ){
     glUniform3f( glGetUniformLocation(id, name.c_str()), vec.x, vec.y, vec.z );
 }
+
 void ShaderProgram::set( std::string name, glm::vec4 vec ){
     glUniform4f( glGetUniformLocation(id, name.c_str()), vec.x, vec.y, vec.z, vec.w );
 }

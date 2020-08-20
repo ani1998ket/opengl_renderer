@@ -1,8 +1,8 @@
 #version 330 core
 
 layout (location = 0) in vec4 position;
-layout (location = 1) in vec4 texture;
-layout (location = 2) in vec4 normal;
+layout (location = 1) in vec4 normal;
+layout (location = 2) in vec4 texture;
 
 out vec4 v_position;
 out vec4 v_texture;

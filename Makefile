@@ -2,7 +2,7 @@ OBJ = obj/main.o obj/Window.o obj/Game.o obj/Model.o obj/FileReader.o obj/Shapes
 INC_PATH = -I src/include
 
 bin/game : $(OBJ) 
-	g++ $(INC_PATH) -o bin/game $(OBJ) -lGL -lGLEW -lglfw 
+	g++ -std=c++17 $(INC_PATH) -o bin/game $(OBJ) -lGL -lGLEW -lglfw 
 
 obj/%.o : src/%.cpp
 	g++ -c $(INC_PATH) -o $@ $<

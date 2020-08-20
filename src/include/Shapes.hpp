@@ -4,18 +4,22 @@
 #include "Model.hpp"
 
 class Triangle : public Model{
-    public:
+public:
     Triangle();
 };
 
 class Square : public Model{
-    public:
+public:
     Square();
 };
 
 class Cube : public Model{
-    public:
+public:
     Cube();
 };
 
+class Plane : public Model{
+public:
+    Plane();
+};
 #endif
